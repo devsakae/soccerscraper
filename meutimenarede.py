@@ -41,7 +41,7 @@ def get_goals(data):
     tds = tr.find_all("td")
     notthatold = tds[2].text
     minuto, tempo = [0, 0] if notthatold is None else notthatold.replace("'", "").replace("º", "").split("/")
-    temp.append({ "autor": tds[1].text, "url": tds[1].find("a")["href"], "pos": tds[0].text, "minuto": int(minuto), "tempo": int(tempo) })
+    temp.append({ "autor": tds[1].text, "url": tds[1].find("a")["href"], "pos": tds[0].text, "minuto": minuto, "tempo": tempo })
   return temp
 
 def get_subs(data):
@@ -51,7 +51,7 @@ def get_subs(data):
     vetor = re.search(r"(\w+)", tds[1].text)[0]
     notthatold = re.search(r"(\d+\'\/\d+)", tds[1].text)
     minuto, tempo = [0, 0] if notthatold is None else notthatold[0].replace("'", "").split("/")
-    temp.append({ "pos": tds[0].text, "numero": tds[2].text, "nome": tds[3].text, "vetor": vetor, "minuto": int(minuto), "tempo": int(tempo) })
+    temp.append({ "pos": tds[0].text, "numero": tds[2].text, "nome": tds[3].text, "vetor": vetor, "minuto": minuto, "tempo": tempo })
   return temp
 
 page = 1
