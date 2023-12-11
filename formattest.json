@@ -1,0 +1,196 @@
+  {
+    "adversario": "ABC",
+    "uf": "RN",
+    "logo": "https: //www.meutimenarede.com.br/imagem/zoom/historicodejogos/3dede39480a5185b7e800a56bb4bef4c.jpg",
+    "resumo": {
+      "j": "13",
+      "v": "7",
+      "e": "4",
+      "d": "2"
+    },
+    "jogos": [
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 35,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 1,
+        "awayScore": 0,
+        "date": "07/11/2023"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 16,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 0,
+        "awayScore": 1,
+        "date": "08/07/2023"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 35,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 3,
+        "awayScore": 1,
+        "date": "10/11/2017"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 16,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 2,
+        "awayScore": 1,
+        "date": "22/07/2017"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 21,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 2,
+        "awayScore": 2,
+        "date": "25/08/2015"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 2,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 0,
+        "awayScore": 2,
+        "date": "15/05/2015"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 30,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 2,
+        "awayScore": 0,
+        "date": "16/10/2012"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 11,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 2,
+        "awayScore": 2,
+        "date": "17/07/2012"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 28,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 3,
+        "awayScore": 1,
+        "date": "04/10/2011"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 9,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 1,
+        "awayScore": 1,
+        "date": "02/07/2011"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 25,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 2,
+        "awayScore": 0,
+        "date": "16/09/2008"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 6,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 0,
+        "awayScore": 0,
+        "date": "14/06/2008"
+      },
+      {
+        "campeonato": "Campeonato Brasileiro - Série B",
+        "fase": 1,
+        "rodada": 13,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Abc",
+        "homeScore": 1,
+        "awayScore": 2,
+        "date": "26/09/1999"
+      }
+    ]
+  },
+  {
+    "adversario": "Aimoré",
+    "uf": "RS",
+    "logo": "https://www.meutimenarede.com.br/imagem/zoom/historicodejogos/ae86a61909743e29164bbb16a8d5d181.jpg",
+    "resumo": {
+      "j": "4",
+      "v": "4",
+      "e": "0",
+      "d": "0"
+    },
+    "jogos": [
+      {
+        "campeonato": "Amistosos Nacionais",
+        "fase": 1,
+        "rodada": 1,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Aimoré",
+        "homeScore": 1,
+        "awayScore": 0,
+        "date": "09/04/2022"
+      },
+      {
+        "campeonato": "Amistosos Nacionais",
+        "fase": 1,
+        "rodada": 1,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Aimoré",
+        "homeScore": 3,
+        "awayScore": 1,
+        "date": "04/02/1994"
+      },
+      {
+        "campeonato": "Amistosos Nacionais",
+        "fase": 1,
+        "rodada": 1,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Aimoré",
+        "homeScore": 3,
+        "awayScore": 0,
+        "date": "31/03/1984"
+      },
+      {
+        "campeonato": "Amistosos Nacionais",
+        "fase": 1,
+        "rodada": 1,
+        "homeTeam": "Criciúma",
+        "awayTeam": "Aimoré",
+        "homeScore": 1,
+        "awayScore": 0,
+        "date": "19/07/1983"
+      }
+    ]
+  }
