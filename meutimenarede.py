@@ -6,14 +6,14 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import re
 
-# uri = "mongodb+srv://devsakae:rodorigo@serverlessinstance0.bciy6lp.mongodb.net/?retryWrites=true&w=majority"
-# client = MongoClient(uri, server_api=ServerApi('1'))
-# try:
-#     client.criciuma.command('ping')
-#     print("Pinged your deployment. You successfully connected to MongoDB!")
-# except Exception as e:
-#     print(e)
-# db = client.criciuma["jogos"]
+uri = "mongodb+srv://devsakae:rodorigo@serverlessinstance0.bciy6lp.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(uri, server_api=ServerApi('1'))
+try:
+    client.criciuma.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+db = client.criciuma["jogos"]
 
 def scrape_this(data):
   test = requests.get(data)
@@ -24,7 +24,7 @@ def get_players(data):
   temp = []
   for tr in data[1:]:
     tds = tr.find_all("td")
-    temp.append({ "pos": tds[0].text, "num": tds[1].text, "nome": tds[2].text, "url": td[2].get("href") })
+    temp.append({ "pos": tds[0].text, "num": tds[1].text, "nome": tds[2].text, "url": tds[2].find("a")["href"] })
   return temp
 
 def get_cards(data):
@@ -33,6 +33,23 @@ def get_cards(data):
     tds = tr.find_all("td")
     color = tds[1].find("span")["class"][0].replace("cartao", "")
     temp.append({ "nome": tds[3].text, "card": color, "url": tds[3].find("a")["href"] })
+  return temp
+
+def get_goals(data):
+  temp = []
+  for tr in data:
+    tds = tr.find_all("td")
+    minuto, tempo = tds[2].text.replace("'", "").replace("º", "").split("/")
+    temp.append({ "autor": tds[1].text, "url": tds[1].find("a")["href"], "pos": tds[0].text, "minuto": int(minuto), "tempo": int(tempo) })
+  return temp
+
+def get_subs(data):
+  temp = []
+  for tr in data:
+    tds = tr.find_all("td")
+    vetor = re.search(r"(\w+)", tds[1].text)[0]
+    minuto, tempo = re.search(r"(\d+\'\/\d+)", tds[1].text)[0].replace("'", "").split("/")
+    temp.append({ "pos": tds[0].text, "numero": tds[2].text, "nome": tds[3].text, "vetor": vetor, "minuto": int(minuto), "tempo": int(tempo) })
   return temp
 
 page = 1
@@ -70,8 +87,8 @@ while page < 5:
         home_players = get_players(pbp_home[1:])
         home_treinador = pbp_home[0].find("a").text
         home_cards = get_cards(thome_cards.find_all("tr"))
-        # print(thome_subs)
-        # print(thome_goals)
+        home_goals = get_goals(thome_goals.find_all("tr"))
+        home_subs = get_subs(thome_subs.find_all("tr"))
 
         ### AWAY TEAM FUNCS
         away = details.find("div", { "class": "col colDireita" })
@@ -81,17 +98,16 @@ while page < 5:
         away_players = get_players(pbp_away[1:])
         away_treinador = pbp_away[0].find("a").text
         away_cards = get_cards(taway_cards.find_all("tr"))
-        # print(taway_subs)
-        # print(taway_goals)
+        away_goals = get_goals(taway_goals.find_all("tr"))
+        away_subs = get_subs(taway_subs.find_all("tr"))
         
-        update = { "campeonato": campeonato, "fase": fase, "rodada": round, "publico": publico, "renda": renda, "homeTeam": homeTeam, "homeScore": int(homeScore.text), "awayTeam": awayTeam, "awayScore": int(awayScore.text), "date": data, "home_treinador": home_treinador, "home_escalacao": home_players, "home_cards": home_cards, "away_treinador": away_treinador, "away_players": away_players, "away_cards": away_cards }
+        update = { "campeonato": campeonato, "fase": fase, "rodada": round, "publico": publico, "renda": renda, "homeTeam": homeTeam, "homeScore": int(homeScore.text), "awayTeam": awayTeam, "awayScore": int(awayScore.text), "date": data, "home_treinador": home_treinador, "home_escalacao": home_players, "home_cards": home_cards, "home_goals": home_goals, "home_subs": home_subs, "away_treinador": away_treinador, "away_players": away_players, "away_cards": away_cards, "away_goals": away_goals, "away_subs": away_subs }
         jogos.append(update)
-        print(update)
         print(f">> {homeTeam} {homeScore.text} x {awayScore.text} {awayTeam} [{campeonato} - {data}]")
-        break # Quebra o loope aqui RETIRAR EM PRODUÇÃO
+        # break # Quebra o loope aqui RETIRAR EM PRODUÇÃO
     print(f'[SALVANDO {nome}-{uf} NA DATABASE...]')
-    break # Quebra o loop aqui RETIRAR EM PRODUÇÃO
-    # pprint.pprint(db.insert_one({ "adversario": nome, "uf": uf, "logo": imagem, "resumo": { "j": j, "v": v, "e": e, "d": d }, "jogos": jogos }))
+    # break # Quebra o loop aqui RETIRAR EM PRODUÇÃO
+    pprint.pprint(db.insert_one({ "adversario": nome, "uf": uf, "logo": imagem, "resumo": { "j": j, "v": v, "e": e, "d": d }, "jogos": jogos }))
   print(f'Scrapped página {page} com sucesso, aguarde...')
-  break # Quebra o loop aqui RETIRAR EM PRODUÇÃO
+  # break # Quebra o loop aqui RETIRAR EM PRODUÇÃO
   page += 1
