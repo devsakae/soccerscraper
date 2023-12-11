@@ -22,7 +22,7 @@ def scrape_this(data):
 
 def get_players(data):
   temp = []
-  for tr in data[1:]:
+  for tr in data:
     tds = tr.find_all("td")
     temp.append({ "pos": tds[0].text, "num": tds[1].text, "nome": tds[2].text, "url": tds[2].find("a")["href"] })
   return temp
@@ -39,7 +39,8 @@ def get_goals(data):
   temp = []
   for tr in data:
     tds = tr.find_all("td")
-    minuto, tempo = tds[2].text.replace("'", "").replace("º", "").split("/")
+    notthatold = tds[2].text
+    minuto, tempo = [0, 0] if notthatold is None else notthatold.replace("'", "").replace("º", "").split("/")
     temp.append({ "autor": tds[1].text, "url": tds[1].find("a")["href"], "pos": tds[0].text, "minuto": int(minuto), "tempo": int(tempo) })
   return temp
 
@@ -48,7 +49,8 @@ def get_subs(data):
   for tr in data:
     tds = tr.find_all("td")
     vetor = re.search(r"(\w+)", tds[1].text)[0]
-    minuto, tempo = re.search(r"(\d+\'\/\d+)", tds[1].text)[0].replace("'", "").split("/")
+    notthatold = re.search(r"(\d+\'\/\d+)", tds[1].text)
+    minuto, tempo = [0, 0] if notthatold is None else notthatold[0].replace("'", "").split("/")
     temp.append({ "pos": tds[0].text, "numero": tds[2].text, "nome": tds[3].text, "vetor": vetor, "minuto": int(minuto), "tempo": int(tempo) })
   return temp
 
@@ -85,7 +87,8 @@ while page < 5:
         thome_main, thome_subs, thome_goals, thome_cards = home.find_all("tbody")
         pbp_home = thome_main.find_all("tr")
         home_players = get_players(pbp_home[1:])
-        home_treinador = pbp_home[0].find("a").text
+        check_home_treinador = pbp_home[0].find("a")
+        home_treinador = "Desconhecido" if check_home_treinador is None else pbp_home[0].find("a").text
         home_cards = get_cards(thome_cards.find_all("tr"))
         home_goals = get_goals(thome_goals.find_all("tr"))
         home_subs = get_subs(thome_subs.find_all("tr"))
@@ -96,7 +99,8 @@ while page < 5:
         taway_main, taway_subs, taway_goals, taway_cards = away.find_all("tbody")
         pbp_away = taway_main.find_all("tr")
         away_players = get_players(pbp_away[1:])
-        away_treinador = pbp_away[0].find("a").text
+        check_away_treinador = pbp_away[0].find("a")
+        away_treinador = "Desconhecido" if check_away_treinador is None else pbp_away[0].find("a").text
         away_cards = get_cards(taway_cards.find_all("tr"))
         away_goals = get_goals(taway_goals.find_all("tr"))
         away_subs = get_subs(taway_subs.find_all("tr"))
